@@ -1,0 +1,43 @@
+#summary Qué se está desarrollando?
+
+= Introduccion =
+
+El juego cuenta con un determinado desarrollo y requerimientos para su versión inicial. Posteriores versiones podrían contener las nuevas ideas u otros cambios al proyecto
+
+
+= Detalles =
+
+*v.1.0 - Sin fecha*
+
+ * Juego 2D, mirado de arriba.
+ * Mapa con colisiones, scrolleable
+ * Solo 1 tipo de juego: Deathmatch.
+ * 4 players en LAN (con XNA)
+ * Player aguantan 2 balas
+ * Con pantalla de selección de personajes
+ * Juego de 800x600
+ * Mapa: HBH
+ * Movimiento con teclado, apuntar y disparar con mouse. Poder con botón derecho.
+ * Se gana a los 21 frags.
+ * Cada 5 frags, se gana poder, no acumulable
+ * HUD, que marque vidas y frags
+ * Player: Cara de cada integrante
+ * Se escogen players, osea, TAREE TEAM MEMBERS.
+ * Todos con disparo básico.
+  * Habilidades Mava:
+   * Disparo básico: chelas
+   * Poder: Mala Cuea (explosión mata TODO)
+  * Habilidades Juba:
+   * Disparo básico: pikos (miembro viril masculino)
+   * Poder: Autismo (todos desaparecen menos el juba)
+  * Habilidades Punchi:
+   * Disparo básico: rosas
+   * Poder: Makabeo (pausa masiva por macabeo)
+  * Habilidades Lito:
+   * Disparo básico: teclado pa la caga
+   * Poder: Lag (REALMENTE nos lageamos)
+
+*v.2.0 - Sin fecha*
+
+ * Con power-ups (armas, escudos, energías, por definir)
+ * Selección de etapas
