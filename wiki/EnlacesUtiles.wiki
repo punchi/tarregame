@@ -1,0 +1,29 @@
+#summary Enlaces de demos, utilidades, graficos, programacion, tutoriales, etc.
+
+= Enlaces =
+
+*Básicos:*
+
+- Star Defense Tutorial <br>
+http://xnaresources.com/pages.asp?pageid=8 (en la parte 12, está el descargable)
+
+- Crear nuevo proyecto y ver ejemplo del wn con las gemas
+
+- Trabajar con tiles (mi idea era un mapa grande, tal vez es la idea de tiles es mejor, hay que hacer los benchmark, mediciones de FPS's) <br>
+http://creators.xna.com/es-ES/sample/tiledsprites
+
+- Estados de juego (menu, opciones, el juego, etc.) <br>
+http://creators.xna.com/es-ES/samples/gamestatemanagement
+
+*Networking:*
+
+- Network Architecture: Client/Server <br>
+http://creators.xna.com/es-ES/sample/networkcs
+
+- Network Architecture: Peer-to-Peer <br>
+http://creators.xna.com/es-ES/sample/networkp2p
+
+*Técnicos:*
+
+- Estructuras de datos <br>
+http://creators.xna.com/es-ES/article/datastructures
