@@ -7,22 +7,25 @@ El juego cuenta con un determinado desarrollo y requerimientos para su versión 
 
 = Detalles =
 
-*v.1.0 - Sin fecha*
+*Juego*
 
  * Juego 2D, mirado de arriba.
  * Mapa con colisiones, scrolleable
- * Solo 1 tipo de juego: Deathmatch.
- * 4 players en LAN (con XNA)
- * Player aguantan 2 balas
+ * Jugadores aguantan 2 balas
  * Con pantalla de selección de personajes
  * Juego de 800x600
- * Mapa: HBH
  * Movimiento con teclado, apuntar y disparar con mouse. Poder con botón derecho.
  * Se gana a los 21 frags.
  * Cada 5 frags, se gana poder, no acumulable
+
+*v.1.0 - Sin fecha*
+
+ * Solo 1 tipo de juego: Deathmatch.
+ * 4 players en LAN (con XNA)
+ * 1 Mapa: HBH
  * HUD, que marque vidas y frags
- * Player: Cara de cada integrante
- * Se escogen players, osea, TAREE TEAM MEMBERS.
+ * Jugador: Cara de cada integrante
+ * Se escogen players, osea, TAREE TEAM MEMBERS
  * Todos con disparo básico.
   * Habilidades Mava:
    * Disparo básico: chelas
