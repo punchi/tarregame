@@ -13,6 +13,13 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace TarreGame
 {
+
+    public class Bala
+    {
+        public Vector2 position;
+        public float angulo;
+
+    }
     /// <summary>
     /// This is the main type for your game
     /// </summary>
@@ -25,14 +32,21 @@ namespace TarreGame
         Texture2D mouse;
         Texture2D mina;
 
+        MouseState maus;
+
         KeyboardState ks;
         SpriteFont spriteFont;
         
         Vector2 posicion_mava;
         Vector2 posicion_mina;
 
-        Vector2 posicion_mouse;
-        Vector2 velocidad_mouse;
+        Vector2 posicion_mouse = new Vector2(30,30);
+
+        List<Bala> lista_balas = new List<Bala>();
+        int delay = 1;
+        int delay2 = 0;
+
+        float angulo_mouse;
 
         public Game1()
         {
@@ -52,6 +66,9 @@ namespace TarreGame
         {
             // TODO: Add your initialization logic here
             posicion_mina.X = 500;
+            posicion_mava.X = 350;
+            posicion_mava.Y = 300;
+            this.IsMouseVisible = true;
 
             base.Initialize();
         }
@@ -70,6 +87,7 @@ namespace TarreGame
             mina = Content.Load<Texture2D>("mina");
 
             spriteFont = Content.Load<SpriteFont>("texto");
+
         }
 
         /// <summary>
@@ -88,17 +106,59 @@ namespace TarreGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            double elapsedMilliseconds = gameTime.TotalGameTime.TotalMilliseconds;
+
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
             ks = Keyboard.GetState();
+            maus = Mouse.GetState();
+            
+            if (maus.LeftButton == ButtonState.Pressed && delay == 1)
+            {
+                angulo_mouse = (float)Math.Atan2(maus.Y - posicion_mava.Y, maus.X - posicion_mava.X);
+
+                posicion_mouse.X += (float)Math.Cos(angulo_mouse);
+                posicion_mouse.Y += (float)Math.Sin(angulo_mouse);
+                
+                Bala bala = new Bala();
+                bala.position = posicion_mava;
+                bala.angulo = angulo_mouse;
+                lista_balas.Add(bala);
+
+                delay = 0;
+            }
+
+            if (delay2 < 15 && delay == 0)
+            {
+                delay2++;
+            }else{
+                delay = 1;
+                delay2 = 0;
+            }
+
+            foreach (Bala bala in lista_balas)
+            {
+                float angulo_disparo = angulo_mouse;
+
+                bala.position.X += (float)Math.Cos(bala.angulo) * 10;
+                bala.position.Y += (float)Math.Sin(bala.angulo) * 10;
+            }
+
+            /*for (int i = 0; i < lista_balas.Count; i++)
+            {
+                float angulo_disparo = angulo_mouse;
+
+                lista_balas[i].position.X += 10 * (float)Math.Cos(angulo_mouse);
+                lista_balas[i].position.Y += 10 * (float)Math.Sin(angulo_mouse);
+
+            }*/
 
             if (ks.IsKeyDown(Keys.Right)) { posicion_mava.X += 5; }
             if (ks.IsKeyDown(Keys.Left)) { posicion_mava.X -= 5; }
             if (ks.IsKeyDown(Keys.Up)) { posicion_mava.Y -= 5; }
             if (ks.IsKeyDown(Keys.Down)) { posicion_mava.Y += 5; }
-            if (ks.IsKeyDown(Keys.Space)) { disparar(); }
 
             if (posicion_mina.X >= 700)
             {
@@ -158,11 +218,26 @@ namespace TarreGame
 
             spriteBatch.Draw(mava, new Rectangle((int)posicion_mava.X, (int)posicion_mava.Y, 80, 100), Color.White);
             spriteBatch.Draw(mina, new Rectangle((int)posicion_mina.X, (int)posicion_mina.Y, 100, 120), Color.White);
+            spriteBatch.Draw(mouse, new Rectangle((int)posicion_mouse.X, (int)posicion_mouse.Y, 50, 50), Color.White);
 
             spriteBatch.DrawString(spriteFont, "MAVA_X= " + posicion_mava.X.ToString() + " / MAVA_Y= " + posicion_mava.Y.ToString(), new Vector2(50, 500), Color.Gold);
             spriteBatch.DrawString(spriteFont, "MINA_X= " + posicion_mina.X.ToString() + " / MINA_Y= " + posicion_mina.Y.ToString(), new Vector2(50, 550), Color.Gold);
 
             spriteBatch.DrawString(spriteFont, "Diff_X= " + (posicion_mina.X - posicion_mava.X).ToString(), new Vector2(200, 250), Color.Gold);
+
+            spriteBatch.DrawString(spriteFont, "Angulo Mouse: " + angulo_mouse.ToString(), new Vector2(50, 50), Color.Gold);
+            spriteBatch.DrawString(spriteFont, "Balas: " + lista_balas.Count.ToString(), new Vector2(50, 70), Color.Gold);
+            spriteBatch.DrawString(spriteFont, "Delay Balas: " + delay2.ToString(), new Vector2(50, 90), Color.Gold);
+
+            foreach (Bala bala in lista_balas)
+            {
+                spriteBatch.Draw(mouse, new Rectangle((int)bala.position.X, (int)bala.position.Y, 50, 50), Color.White);
+            }
+
+            /*for (int i = 0; i < lista_balas.Count; i++)
+            {
+                spriteBatch.Draw(mouse, new Rectangle((int)lista_balas[i].position.X, (int)lista_balas[i].position.Y, 50, 50), Color.White);
+            }*/
 
             spriteBatch.End();
             base.Draw(gameTime);
