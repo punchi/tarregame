@@ -1,0 +1,29 @@
+#summary Las tareas encomendadas al equipo y sus avances
+
+= Equipo =
+
+Alfredo Concha (Punchi) -> Programacion
+Alexander Martines (Mava) -> Programacion
+Sebastian Concha (Juba) -> Sonido
+
+= Tareas -> Punchi =
+
+* Crear menús y el lobby
+* Networking (sincronizacion del juego a través de internet)
+* Fotos de jugadores
+* Poderes: Punchi y Lito
+
+
+= Tareas -> Mava =
+
+* Creación de jugadores y poderes de: Mava y Juba
+* Colisiones
+* HUD (Indicadores de vida y frags en pantalla)
+* Calculos de todo juego
+* Disparos
+
+
+= Tareas -> Juba =
+
+* Efectos de sonido (disparos, poderes, muertes, ganador)
+* Musica; tema de menu y de juego
