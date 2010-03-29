@@ -2,28 +2,27 @@
 
 = Equipo =
 
-Alfredo Concha (Punchi) -> Programacion
-Alexander Martines (Mava) -> Programacion
+Alfredo Concha (Punchi) -> Programacion<br>
+Alexander Martines (Mava) -> Programacion<br>
 Sebastian Concha (Juba) -> Sonido
 
-= Tareas -> Punchi =
+* Tareas > Punchi *
 
-* Crear menús y el lobby
-* Networking (sincronizacion del juego a través de internet)
-* Fotos de jugadores
-* Poderes: Punchi y Lito
+ * Crear menús y el lobby
+ * Networking (sincronizacion del juego a través de internet)
+ * Fotos de jugadores
+ * Poderes: Punchi y Lito
+
+* Tareas > Mava *
+
+ * Creación de jugadores y poderes de: Mava y Juba
+ * Colisiones
+ * HUD (Indicadores de vida y frags en pantalla)
+ * Calculos de todo juego
+ * Disparos
 
 
-= Tareas -> Mava =
+* Tareas > Juba *
 
-* Creación de jugadores y poderes de: Mava y Juba
-* Colisiones
-* HUD (Indicadores de vida y frags en pantalla)
-* Calculos de todo juego
-* Disparos
-
-
-= Tareas -> Juba =
-
-* Efectos de sonido (disparos, poderes, muertes, ganador)
-* Musica; tema de menu y de juego
+ * Efectos de sonido (disparos, poderes, muertes, ganador)
+ * Musica; tema de menu y de juego
