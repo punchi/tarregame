@@ -21,12 +21,15 @@ El juego cuenta con un determinado desarrollo y requerimientos para su versión 
 *v.1.0 - Sin fecha*
 
  * Solo 1 tipo de juego: Deathmatch.
- * 4 players en LAN (con XNA)
- * 1 Mapa: HBH
- * HUD, que marque vidas y frags
+ * 4 players en LAN (con XNA, cliente-servidor)
+ * 1 Mapa: HBH (en BETA -> cuadrado sin colisiones)
+ * Menús made by programadores XD -> menu charcha, se escoge crear o unir -> lobby -> juego!
+ * HUD, que marque vidas y frags de todos (sólo numeros)
  * Jugador: Cara de cada integrante
- * Se escogen players, osea, TAREE TEAM MEMBERS
+ * Los jugadores no se pueden sobreponer unos con otros
+ * Se escogen players, osea, TAREE TEAM MEMBERS ( en el loby se escoge al player, puede ser con numeros, un click, algo simple)
  * Todos con disparo básico.
+ * Cuando se puede tirar el poder, nombre cambia de color a rojo
   * Habilidades Mava:
    * Disparo básico: chelas
    * Poder: Mala Cuea (explosión mata TODO)
