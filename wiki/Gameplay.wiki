@@ -43,6 +43,10 @@ El juego cuenta con un determinado desarrollo y requerimientos para su versión 
    * Disparo básico: teclado pa la caga
    * Poder: Lag (REALMENTE nos lageamos)
 
+= Concepto =
+
+http://img526.imageshack.us/img526/623/gamplay.png
+
 *v.2.0 - Sin fecha*
 
  * Con power-ups (armas, escudos, energías, por definir)
