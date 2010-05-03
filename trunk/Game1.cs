@@ -11,15 +11,9 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-namespace TarreGame
+
+namespace TarreeGame
 {
-
-    public class Bala
-    {
-        public Vector2 position;
-        public float angulo;
-
-    }
     /// <summary>
     /// This is the main type for your game
     /// </summary>
@@ -27,32 +21,18 @@ namespace TarreGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-        Texture2D mava;
-        Texture2D mouse;
-        Texture2D mina;
-
-        MouseState maus;
-
-        KeyboardState ks;
-        SpriteFont spriteFont;
-        
-        Vector2 posicion_mava;
-        Vector2 posicion_mina;
-
-        Vector2 posicion_mouse = new Vector2(30,30);
-
-        List<Bala> lista_balas = new List<Bala>();
-        int delay = 1;
-        int delay2 = 0;
-
-        float angulo_mouse;
+        SpriteFont spritefont;
+        Player player;
+        Player Punchi;
+        Bala bala;
+        Vector2 inputplayer;
+        Vector2 hudfrags=new Vector2(10,10);
+        string eleccionplayer="Mava";
+        string pantalla = "EleccionPlayer";
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferHeight = 800;
-
             Content.RootDirectory = "Content";
         }
 
@@ -65,11 +45,10 @@ namespace TarreGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            posicion_mina.X = 500;
-            posicion_mava.X = 350;
-            posicion_mava.Y = 300;
-            this.IsMouseVisible = true;
-
+            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.ApplyChanges();
+            IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -81,13 +60,13 @@ namespace TarreGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            spritefont = Content.Load<SpriteFont>(@"font\font");
 
-            mava = Content.Load<Texture2D>("mava");
-            mouse = Content.Load<Texture2D>("mouse");
-            mina = Content.Load<Texture2D>("mina");
-
-            spriteFont = Content.Load<SpriteFont>("texto");
-
+            player = new Player(Content,eleccionplayer);
+            Punchi = new Player(Content, "Punchi");
+            bala = new Bala(Content);
+            
+            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -106,104 +85,20 @@ namespace TarreGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            double elapsedMilliseconds = gameTime.TotalGameTime.TotalMilliseconds;
-
+            KeyboardState keystate = Keyboard.GetState();
+            MouseState mouse = Mouse.GetState();
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (keystate.IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            ks = Keyboard.GetState();
-            maus = Mouse.GetState();
-            
-            if (maus.LeftButton == ButtonState.Pressed && delay == 1)
+            // TODO: Add your update logic here
+            if (pantalla == "Juego")
             {
-                angulo_mouse = (float)Math.Atan2(maus.Y - posicion_mava.Y, maus.X - posicion_mava.X);
-
-                posicion_mouse.X += (float)Math.Cos(angulo_mouse);
-                posicion_mouse.Y += (float)Math.Sin(angulo_mouse);
-                
-                Bala bala = new Bala();
-                bala.position = posicion_mava;
-                bala.angulo = angulo_mouse;
-                lista_balas.Add(bala);
-
-                delay = 0;
+                CheckMovmentPlayer(keystate);
+                bala.disparar(gameTime, mouse, player);
+                ImpactoPlayer();
             }
-
-            if (delay2 < 15 && delay == 0)
-            {
-                delay2++;
-            }else{
-                delay = 1;
-                delay2 = 0;
-            }
-
-            foreach (Bala bala in lista_balas)
-            {
-                float angulo_disparo = angulo_mouse;
-
-                bala.position.X += (float)Math.Cos(bala.angulo) * 10;
-                bala.position.Y += (float)Math.Sin(bala.angulo) * 10;
-            }
-
-            /*for (int i = 0; i < lista_balas.Count; i++)
-            {
-                float angulo_disparo = angulo_mouse;
-
-                lista_balas[i].position.X += 10 * (float)Math.Cos(angulo_mouse);
-                lista_balas[i].position.Y += 10 * (float)Math.Sin(angulo_mouse);
-
-            }*/
-
-            if (ks.IsKeyDown(Keys.Right)) { posicion_mava.X += 5; }
-            if (ks.IsKeyDown(Keys.Left)) { posicion_mava.X -= 5; }
-            if (ks.IsKeyDown(Keys.Up)) { posicion_mava.Y -= 5; }
-            if (ks.IsKeyDown(Keys.Down)) { posicion_mava.Y += 5; }
-
-            if (posicion_mina.X >= 700)
-            {
-                posicion_mina.X = 700;
-            }
-
-            if (posicion_mina.X <= 0)
-            {
-                posicion_mina.X = 0;
-            }
-
-            if (posicion_mina.Y >= 480)
-            {
-                posicion_mina.Y = 480;
-            }
-
-            if (posicion_mina.Y <= 0)
-            {
-                posicion_mina.Y = 0;
-            }
-
-            if ((posicion_mina.X - posicion_mava.X) < 200)
-            {
-                if (posicion_mava.X < posicion_mina.X)
-                {
-                    posicion_mina.X++;
-                }
-                else
-                {
-                    posicion_mina.X--;
-                }
-            }
-
-            if ((posicion_mava.Y - posicion_mina.Y) < 200)
-            {
-                if (posicion_mava.Y < posicion_mina.Y)
-                {
-                    posicion_mina.Y++;
-                }
-                else
-                {
-                    posicion_mina.Y--;
-                }
-            }
-
+            UpdateMenu(keystate);
             base.Update(gameTime);
         }
 
@@ -214,38 +109,79 @@ namespace TarreGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
 
-            spriteBatch.Draw(mava, new Rectangle((int)posicion_mava.X, (int)posicion_mava.Y, 80, 100), Color.White);
-            spriteBatch.Draw(mina, new Rectangle((int)posicion_mina.X, (int)posicion_mina.Y, 100, 120), Color.White);
-            spriteBatch.Draw(mouse, new Rectangle((int)posicion_mouse.X, (int)posicion_mouse.Y, 50, 50), Color.White);
+            // TODO: Add your drawing code here
 
-            spriteBatch.DrawString(spriteFont, "MAVA_X= " + posicion_mava.X.ToString() + " / MAVA_Y= " + posicion_mava.Y.ToString(), new Vector2(50, 500), Color.Gold);
-            spriteBatch.DrawString(spriteFont, "MINA_X= " + posicion_mina.X.ToString() + " / MINA_Y= " + posicion_mina.Y.ToString(), new Vector2(50, 550), Color.Gold);
-
-            spriteBatch.DrawString(spriteFont, "Diff_X= " + (posicion_mina.X - posicion_mava.X).ToString(), new Vector2(200, 250), Color.Gold);
-
-            spriteBatch.DrawString(spriteFont, "Angulo Mouse: " + angulo_mouse.ToString(), new Vector2(50, 50), Color.Gold);
-            spriteBatch.DrawString(spriteFont, "Balas: " + lista_balas.Count.ToString(), new Vector2(50, 70), Color.Gold);
-            spriteBatch.DrawString(spriteFont, "Delay Balas: " + delay2.ToString(), new Vector2(50, 90), Color.Gold);
-
-            foreach (Bala bala in lista_balas)
+            if (pantalla == "EleccionPlayer")
             {
-                spriteBatch.Draw(mouse, new Rectangle((int)bala.position.X, (int)bala.position.Y, 50, 50), Color.White);
+                DrawEleccionPlayer(); 
+            }
+            else 
+            {
+                DrawGameplay(); 
             }
 
-            /*for (int i = 0; i < lista_balas.Count; i++)
-            {
-                spriteBatch.Draw(mouse, new Rectangle((int)lista_balas[i].position.X, (int)lista_balas[i].position.Y, 50, 50), Color.White);
-            }*/
-
-            spriteBatch.End();
             base.Draw(gameTime);
         }
 
-        private void disparar()
+        /// <summary>
+        /// funciones que van en update
+        /// </summary>
+        /// 
+        void DrawEleccionPlayer() 
         {
+            spriteBatch.Begin();
 
+            spriteBatch.DrawString(spritefont,"Presiona F1 para comensar "
+                                               +"\nPresiona F2 para volver esta ventana"
+                                               +"\nPresiona F3 para cambiar personaje", new Vector2(160, 160), Color.Black);
+            spriteBatch.DrawString(spritefont,"Presiona F1 para comensar "
+                                               +"\nPresiona F2 para volver esta ventana"
+                                               +"\nPresiona F3 para cambiar personaje", new Vector2(161, 161), Color.Red);
+            spriteBatch.DrawString(spritefont, "Jugador: " + eleccionplayer, new Vector2(160, 300), Color.Black);
+            spriteBatch.DrawString(spritefont, "Jugador: " + eleccionplayer, new Vector2(161, 301), Color.Red);
+            spriteBatch.End();
+        }
+        void DrawGameplay() 
+        {
+            spriteBatch.Begin();
+
+            player.Draw(spriteBatch,spritefont);
+            Punchi.Draw(spriteBatch,spritefont);
+            if (bala.activo == true) { bala.Draw(spriteBatch); }
+            spriteBatch.DrawString(spritefont, "frags: " + player.frags.ToString(), hudfrags, Color.White);
+            spriteBatch.DrawString(spritefont, "frags: " + player.frags.ToString(), hudfrags+new Vector2(1,1), Color.YellowGreen);
+            spriteBatch.End();
+
+        }
+        public void ImpactoPlayer() 
+        {
+            if (Punchi.ImpactoBala(bala))
+            {
+                bala.activo = false;
+                Punchi.KillPlayer(player);
+            }
+        }
+
+        protected void CheckMovmentPlayer(KeyboardState ksstate)
+        {
+            if (ksstate.IsKeyDown(Keys.Up))   { inputplayer.Y = -1;     player.Update(inputplayer); } else { inputplayer.Y = 0; }
+            if (ksstate.IsKeyDown(Keys.Down)) { inputplayer.Y = 1;      player.Update(inputplayer); } else { inputplayer.Y = 0; }
+            if (ksstate.IsKeyDown(Keys.Left)) { inputplayer.X = -1;     player.Update(inputplayer); } else { inputplayer.X = 0; }
+            if (ksstate.IsKeyDown(Keys.Right)){ inputplayer.X = 1;      player.Update(inputplayer); } else { inputplayer.X = 0; }
+            
+        }
+        public void UpdateMenu(KeyboardState ksstate) 
+        {
+            if (ksstate.IsKeyDown(Keys.F1)) { pantalla = "Juego"; }
+            if (ksstate.IsKeyDown(Keys.F2)) { pantalla = "EleccionPlayer"; }
+//            if (ksstate.IsKeyDown(Keys.F3)&& pantalla == "EleccionPlayer")
+//            {
+//                if (eleccionplayer == "Mava") { eleccionplayer = "Punchi"; }
+//                if (eleccionplayer == "Punchi") { eleccionplayer = "Lito"; }
+//                if (eleccionplayer == "Lito") { eleccionplayer = "Juba"; }
+//                if (eleccionplayer == "Juba") { eleccionplayer = "Mava"; }
+//            }
         }
     }
 }

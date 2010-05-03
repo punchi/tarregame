@@ -1,6 +1,6 @@
 using System;
 
-namespace TarreGame
+namespace TarreeGame
 {
     static class Program
     {

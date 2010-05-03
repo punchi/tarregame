@@ -37,6 +37,15 @@
       <Output>C:\Documents and Settings\punchi\Mis documentos\Visual Studio 2008\Projects\TarreGame\TarreGame\bin\x86\Debug\Content\texto.xnb</Output>
       <Time>2010-03-06T19:18:13.875-03:00</Time>
     </Item>
+    <Item>
+      <Source>seba.png</Source>
+      <Name>seba</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\punchi\Mis documentos\Visual Studio 2008\Projects\TarreGame\TarreGame\bin\x86\Debug\Content\seba.xnb</Output>
+      <Time>2010-03-24T19:42:06.5-04:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

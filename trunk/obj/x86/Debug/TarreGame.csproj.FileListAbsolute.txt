@@ -8,3 +8,4 @@ C:\Documents and Settings\punchi\Mis documentos\Visual Studio 2008\Projects\Tarr
 C:\Documents and Settings\punchi\Mis documentos\Visual Studio 2008\Projects\TarreGame\TarreGame\bin\x86\Debug\Content\mouse.xnb
 C:\Documents and Settings\punchi\Mis documentos\Visual Studio 2008\Projects\TarreGame\TarreGame\bin\x86\Debug\Content\mina.xnb
 C:\Documents and Settings\punchi\Mis documentos\Visual Studio 2008\Projects\TarreGame\TarreGame\bin\x86\Debug\Content\texto.xnb
+C:\Documents and Settings\punchi\Mis documentos\Visual Studio 2008\Projects\TarreGame\TarreGame\bin\x86\Debug\Content\seba.xnb
