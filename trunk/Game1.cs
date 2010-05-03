@@ -135,7 +135,7 @@ namespace TarreeGame
             spriteBatch.DrawString(spritefont,"Presiona F1 para comenzar "
                                                +"\nPresiona F2 para volver esta ventana"
                                                +"\nPresiona F3 para cambiar personaje", new Vector2(160, 160), Color.Black);
-            spriteBatch.DrawString(spritefont,"Presiona F1 para comensar "
+            spriteBatch.DrawString(spritefont,"Presiona F1 para comenzar "
                                                +"\nPresiona F2 para volver esta ventana"
                                                +"\nPresiona F3 para cambiar personaje", new Vector2(161, 161), Color.Red);
             spriteBatch.DrawString(spritefont, "Jugador: " + eleccionplayer, new Vector2(160, 300), Color.Black);
