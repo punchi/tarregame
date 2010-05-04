@@ -85,7 +85,7 @@ namespace TarreeGame
         {
             spritebatch.Draw(balatextura, posicion, Color.White);
         }
-        public void disparar(GameTime gametime, MouseState mouse,Player player)
+        public void disparar(GameTime gametime, MouseState mouse,Jugador player)
         {
             Update(gametime);
             if (mouse.LeftButton == ButtonState.Pressed && activo == false)

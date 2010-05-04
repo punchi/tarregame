@@ -22,18 +22,35 @@ namespace TarreeGame
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteFont spritefont;
-        Player player;
-        Player Punchi;
+        Jugador player;
+        Jugador Punchi;
         Bala bala;
         Vector2 inputplayer;
         Vector2 hudfrags=new Vector2(10,10);
-        string eleccionplayer="Mava";
+        Pantallas menu_principal;
+        string eleccionplayer;
+        int indice_eleccionplayer = 0;
         string pantalla = "EleccionPlayer";
+
+        #region Multiplayer
+
+        /*NetworkSession networksession;
+        PacketReader packetreader;
+        PacketWriter packetwriter;*/
+
+        #endregion
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            //Components.Add(new GamerServicesComponent(this));
+            //SignedInGamer.SignedIn +=new EventHandler<SignedInEventArgs>(SignedInGamer_SignedIn);
+        }
+
+        void SignedInGamer_SignedIn(object sender, SignedInEventArgs e)
+        {
+            e.Gamer.Tag = new Jugador(Content, "Juba");
         }
 
         /// <summary>
@@ -62,9 +79,16 @@ namespace TarreeGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
             spritefont = Content.Load<SpriteFont>(@"font\font");
 
-            player = new Player(Content,eleccionplayer);
-            Punchi = new Player(Content, "Punchi");
+            player = new Jugador(Content,eleccionplayer);
+            Punchi = new Jugador(Content, "Punchi");
             bala = new Bala(Content);
+
+            menu_principal = new Pantallas(5);
+            menu_principal.anadir(0, "Presiona F1 para comenzar po shoro! (Single Player)");
+            menu_principal.anadir(1, "Presiona F2 para volver esta ventana");
+            menu_principal.anadir(2, "Presiona F3 para cambiar personaje");
+            menu_principal.anadir(3, "Presiona F4 para iniciar como SERVIDOR");
+            menu_principal.anadir(4, "Presiona F5 para iniciar como CLIENTE");
             
             // TODO: use this.Content to load your game content here
         }
@@ -92,12 +116,28 @@ namespace TarreeGame
                 this.Exit();
 
             // TODO: Add your update logic here
+            if (pantalla == "EleccionPlayer")
+            {
+                UpdateEleccionPlayer(keystate);
+            }
+            
             if (pantalla == "Juego")
             {
                 CheckMovmentPlayer(keystate);
                 bala.disparar(gameTime, mouse, player);
                 ImpactoPlayer();
             }
+
+            if (pantalla == "Servidor")
+            {
+
+            }
+
+            if (pantalla == "Cliente")
+            {
+
+            }
+
             UpdateMenu(keystate);
             base.Update(gameTime);
         }
@@ -111,10 +151,18 @@ namespace TarreeGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            //spriteBatch.Begin();
+
+            
 
             if (pantalla == "EleccionPlayer")
             {
-                DrawEleccionPlayer(); 
+                spriteBatch.Begin();
+                
+                DrawEleccionPlayer();
+                menu_principal.Draw(spriteBatch, spritefont);
+                
+                spriteBatch.End();
             }
             else 
             {
@@ -130,18 +178,65 @@ namespace TarreeGame
         /// 
         void DrawEleccionPlayer() 
         {
-            spriteBatch.Begin();
+            
 
-            spriteBatch.DrawString(spritefont,"Presiona F1 para comenzar po shoro! "
-                                               +"\nPresiona F2 para volver esta ventana"
-                                               +"\nPresiona F3 para cambiar personaje", new Vector2(160, 160), Color.Black);
+            /*spriteBatch.DrawString(spritefont,"Presiona F1 para comenzar po shoro! (Single Player) "
+                                               + "\nPresiona F2 para volver esta ventana"
+                                               + "\nPresiona F3 para cambiar personaje"
+                                               + "\nPresiona F4 para iniciar como SERVIDOR"
+                                               + "\nPresiona F5 para iniciar como CLIENTE", new Vector2(160, 160), Color.Black);
             spriteBatch.DrawString(spritefont, "Presiona F1 para comenzar po shoro! "
                                                +"\nPresiona F2 para volver esta ventana"
-                                               +"\nPresiona F3 para cambiar personaje", new Vector2(161, 161), Color.Red);
-            spriteBatch.DrawString(spritefont, "Jugador: " + eleccionplayer, new Vector2(160, 300), Color.Black);
-            spriteBatch.DrawString(spritefont, "Jugador: " + eleccionplayer, new Vector2(161, 301), Color.Red);
-            spriteBatch.End();
+                                               +"\nPresiona F3 para cambiar personaje", new Vector2(161, 161), Color.Red);*/
+
+            switch (indice_eleccionplayer)
+            {
+                case 0:
+                    eleccionplayer = "Juba";
+                    break;
+                case 1:
+                    eleccionplayer = "Lito";
+                    break;
+                case 2:
+                    eleccionplayer = "Mava";
+                    break;
+                case 3:
+                    eleccionplayer = "Punchi";
+                    break;
+            }
+
+            spriteBatch.DrawString(spritefont, "Jugador: " + eleccionplayer, new Vector2(160, 330), Color.Black);
+            spriteBatch.DrawString(spritefont, "Jugador: " + eleccionplayer, new Vector2(161, 331), Color.Red);
+            
         }
+
+        void UpdateEleccionPlayer(KeyboardState ksstate)
+        {
+
+            if (ksstate.IsKeyDown(Keys.Left))
+            {
+                if (indice_eleccionplayer > 0)
+                {
+                    indice_eleccionplayer--;
+                }
+            }
+
+            if (ksstate.IsKeyDown(Keys.Right))
+            {
+                if (indice_eleccionplayer < 4)
+                {
+                    indice_eleccionplayer++;
+                }
+            }
+            
+
+            /*if (eleccionplayer == "asd") { eleccionplayer = "Punchi"; }
+            if (eleccionplayer == "Punchi") { eleccionplayer = "Lito"; }
+            if (eleccionplayer == "Lito") { eleccionplayer = "Juba"; }
+            if (eleccionplayer == "Juba") { eleccionplayer = "lol"; }*/
+
+        }
+
         void DrawGameplay() 
         {
             spriteBatch.Begin();
@@ -182,6 +277,9 @@ namespace TarreeGame
 //                if (eleccionplayer == "Lito") { eleccionplayer = "Juba"; }
 //                if (eleccionplayer == "Juba") { eleccionplayer = "Mava"; }
 //            }
+
+            if (ksstate.IsKeyDown(Keys.F4)) { pantalla = "Servidor"; }
+            if (ksstate.IsKeyDown(Keys.F5)) { pantalla = "Cliente"; }
         }
     }
 }
