@@ -14,12 +14,12 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace TarreeGame
 {
-    class Pantallas
+    class Pantalla
     {
         private string[] elementos;
         private int separacion = 30;
 
-        public Pantallas(int elements)
+        public Pantalla(int elements)
         {
             elementos = new string[elements];
             /*switch (pantalla)

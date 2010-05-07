@@ -23,6 +23,7 @@ namespace TarreeGame
         string iNombre=null;
         int ifrags = 0;
         int ividas = 2;
+        bool ien_juego = false;
         Texture2D playertexture;
         #endregion
 
@@ -61,6 +62,11 @@ namespace TarreeGame
             get { return posicion; }
             set { posicion = value; }
         }
+        public bool en_juego
+        {
+            get { return en_juego; }
+            set { ien_juego = value; }
+        }
         #endregion
 
         #region constructores
@@ -95,6 +101,7 @@ namespace TarreeGame
                 iNombre = "Punchi";
                 playertexture = Content.Load<Texture2D>(@"Texture\Punchi");
             }
+            ien_juego = false;
         }
         #endregion
 
