@@ -1,0 +1,51 @@
+# Introduccion #
+
+El juego cuenta con un determinado desarrollo y requerimientos para su versión inicial. Posteriores versiones podrían contener las nuevas ideas u otros cambios al proyecto
+
+
+# Detalles #
+
+**Juego**
+
+  * Juego 2D, mirado de arriba.
+  * Mapa con colisiones, scrolleable
+  * Jugadores aguantan 2 balas
+  * Con pantalla de selección de personajes
+  * Juego de 800x600
+  * Movimiento con teclado, apuntar y disparar con mouse. Poder con botón derecho.
+  * Se gana a los 21 frags.
+  * Cada 5 frags, se gana poder, no acumulable
+
+**v.1.0 - Sin fecha**
+
+  * Solo 1 tipo de juego: Deathmatch.
+  * 4 players en LAN (con XNA, cliente-servidor)
+  * 1 Mapa: HBH (en BETA -> cuadrado sin colisiones)
+  * Menús made by programadores XD -> menu charcha, se escoge crear o unir -> lobby -> juego!
+  * HUD, que marque vidas y frags de todos (sólo numeros)
+  * Jugador: Cara de cada integrante
+  * Los jugadores no se pueden sobreponer unos con otros
+  * Se escogen players, osea, TAREE TEAM MEMBERS ( en el loby se escoge al player, puede ser con numeros, un click, algo simple)
+  * Todos con disparo básico.
+  * Cuando se puede tirar el poder, nombre cambia de color a rojo
+    * Habilidades Mava:
+      * Disparo básico: chelas
+      * Poder: Mala Cuea (explosión mata TODO)
+    * Habilidades Juba:
+      * Disparo básico: pikos (miembro viril masculino)
+      * Poder: Autismo (todos desaparecen menos el juba)
+    * Habilidades Punchi:
+      * Disparo básico: rosas
+      * Poder: Makabeo (pausa masiva por macabeo)
+    * Habilidades Lito:
+      * Disparo básico: teclado pa la caga
+      * Poder: Lag (REALMENTE nos lageamos)
+
+# Concepto #
+
+![http://img526.imageshack.us/img526/623/gamplay.png](http://img526.imageshack.us/img526/623/gamplay.png)
+
+**v.2.0 - Sin fecha**
+
+  * Con power-ups (armas, escudos, energías, por definir)
+  * Selección de etapas
